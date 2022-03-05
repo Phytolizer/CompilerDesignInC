@@ -4,7 +4,6 @@
         {
             "name": "dev-base",
             "hidden": true,
-            "generator": "Ninja",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
@@ -13,6 +12,7 @@
         {
             "name": "dev",
             "inherits": "dev-base",
+            "generator": "Ninja",
             "binaryDir": "build"
         }
     ],
