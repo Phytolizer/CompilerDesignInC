@@ -9,3 +9,6 @@ target_link_libraries("RecursiveDescent_improved" PRIVATE "RecursiveDescent")
 
 add_executable("RecursiveDescent_retval" "Source/main.c" "Source/retval.c")
 target_link_libraries("RecursiveDescent_retval" PRIVATE "RecursiveDescent")
+
+add_executable("RecursiveDescent_args" "Source/main.c" "Source/args.c")
+target_link_libraries("RecursiveDescent_args" PRIVATE "RecursiveDescent")
