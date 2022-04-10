@@ -1,0 +1,6 @@
+#ifndef COMPILERDESIGNINC_PARSE_H
+#define COMPILERDESIGNINC_PARSE_H
+
+void statements(void);
+
+#endif // COMPILERDESIGNINC_PARSE_H
