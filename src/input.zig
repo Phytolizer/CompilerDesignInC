@@ -4,6 +4,10 @@ fn GetlineError(comptime T: type) type {
     return error{ StreamTooLong, EndOfFile } || T.Error;
 }
 
+fn lenOfMaybe(slice: ?[]u8) usize {
+    return if (slice) |s| s.len else 0;
+}
+
 /// Gets a line of input. Gets at most stringp.len characters. Updates stringp.*
 /// to point at the end of the string. Return the matched line. The '\n'
 /// is not put into the string.
@@ -13,7 +17,7 @@ fn GetlineError(comptime T: type) type {
 ///       error.LineTooLong if the line is too long.
 pub fn getline(stringp: *[]u8, stream: anytype) GetlineError(@TypeOf(stream))![]u8 {
     const result = try stream.readUntilDelimiterOrEof(stringp.*, '\n');
-    stringp.* = stringp.*[(result orelse &[_]u8{}).len..];
+    stringp.* = stringp.*[lenOfMaybe(result)..];
     return result orelse error.EndOfFile;
 }
 
