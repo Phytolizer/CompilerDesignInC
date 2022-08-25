@@ -46,6 +46,13 @@ fn lookaheadImpl(comptime Reader: type, state: *globals.State(Reader)) !?u8 {
     return if (nread == 0) null else buf[0];
 }
 
+/// Input routine for nfa(). Gets a regular expression and the associated
+/// string from the input stream. Returns a pointer to the input string
+/// normally. Returns NULL on end of file or if a line beginning with % is
+/// encountered. All blank lines are discarded and all lines that start with
+/// whitespace are concatenated to the previous line. The global variable
+/// Lineno is set to the line number of the top line of a multiple-line
+/// block. Actual_lineno holds the real line number.
 pub fn getExpr(state: anytype) !?[]u8 {
     return getExprImpl(@TypeOf(state.ifile.unbuffered_reader), state);
 }
