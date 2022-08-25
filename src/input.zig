@@ -8,9 +8,9 @@ fn GetlineError(comptime T: type) type {
 /// to point at the end of the string. Return the matched line. The '\n'
 /// is not put into the string.
 ///
-/// Return the character following the \n normally,
-///        error.EndOfFile                at end of file,
-///        error.LineTooLong              if the line is too long.
+/// Return the matched line normally,
+///       error.EndOfFile   at end of file,
+///       error.LineTooLong if the line is too long.
 pub fn getline(stringp: *[]u8, stream: anytype) GetlineError(@TypeOf(stream))![]u8 {
     const result = try stream.readUntilDelimiterOrEof(stringp.*, '\n');
     stringp.* = stringp.*[(result orelse &[_]u8{}).len..];
