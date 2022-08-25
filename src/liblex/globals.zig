@@ -2,6 +2,7 @@ const std = @import("std");
 
 pub fn State(comptime Reader: type) type {
     return struct {
+        allocator: std.mem.Allocator,
         verbosity: usize = 0,
         no_lines: bool = false,
         unix: bool = false,

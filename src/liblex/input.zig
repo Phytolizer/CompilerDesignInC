@@ -98,6 +98,7 @@ test "getExpr" {
     var stream = std.io.fixedBufferStream(test_str);
     var reader = stream.reader();
     var state = globals.State(@TypeOf(reader)){
+        .allocator = std.testing.allocator,
         .ifile = std.io.peekStream(1, reader),
     };
     const first = try getExpr(&state);
