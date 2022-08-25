@@ -1,13 +1,17 @@
 const std = @import("std");
 
-pub var verbosity: usize = 0;
-pub var no_lines = false;
-pub var unix = false;
-pub var public = false;
-pub var template = "lex.par";
-pub var actualLineNo: usize = 1;
-pub var lineNo: usize = 1;
-pub var inputBuf: [2048]u8 = undefined;
-pub var inputFileName: []const u8 = "";
-pub var iFile: ?*std.fs.File = null;
-pub var oFile: ?*std.fs.File = null;
+pub fn State(comptime Reader: type) type {
+    return struct {
+        verbosity: usize = 0,
+        no_lines: bool = false,
+        unix: bool = false,
+        public: bool = false,
+        template: []const u8 = "lex.par",
+        actual_lineno: usize = 1,
+        lineno: usize = 1,
+        input_buf: [2048]u8 = undefined,
+        input_file_name: []const u8 = "",
+        ifile: std.io.PeekStream(.{ .Static = 1 }, Reader) = undefined,
+        ofile: std.fs.File.Writer = undefined,
+    };
+}

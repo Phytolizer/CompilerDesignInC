@@ -3,5 +3,6 @@ const std = @import("std");
 pub fn main() !void {}
 
 test {
-    _ = @import("liblex.zig").input;
+    const liblex = @import("liblex.zig");
+    _ = liblex.input;
 }
